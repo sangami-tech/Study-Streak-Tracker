@@ -1,0 +1,432 @@
+:root {
+  --ink: #1c2333;
+  --ink-soft: #262f45;
+  --ink-text: #ece7d8;
+  --ink-text-dim: #a9a49a;
+
+  --paper: #f7f2e6;
+  --paper-line: #ddd2b3;
+  --pencil: #4f4b3f;
+  --pencil-dim: #8a8471;
+
+  --ember: #e2984c;
+  --ember-dark: #b9702a;
+  --moss: #6f8f6b;
+  --rust: #b1503a;
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Public Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--ink-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 32px;
+}
+
+/* ---------- Cover / Hero ---------- */
+
+.cover {
+  text-align: center;
+  padding: 32px 16px 40px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  color: var(--ember);
+  margin: 0 0 20px;
+}
+
+.streak-display {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.streak-display #streakNumber {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(64px, 16vw, 108px);
+  line-height: 1;
+  color: var(--ink-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.streak-unit {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--ink-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.tagline {
+  color: var(--ink-text-dim);
+  margin: 16px 0 28px;
+  font-size: 15px;
+}
+
+.btn-primary {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  background: var(--ember);
+  color: #1c1206;
+  border: none;
+  padding: 13px 26px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover { background: #eaa860; }
+.btn-primary:active { transform: translateY(1px); }
+.btn-primary:focus-visible,
+.btn-ghost:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+.calendar-day:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 2px;
+}
+
+/* ---------- Week ledger (tally marks) ---------- */
+
+.week-ledger {
+  padding: 0 8px 32px;
+}
+
+.week-ledger h2 {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-text-dim);
+  margin: 0 0 14px;
+  font-weight: 500;
+}
+
+.tally-row {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.tally-day {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 4px;
+  border-radius: var(--radius);
+  background: var(--ink-soft);
+}
+
+.tally-day .dow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-text-dim);
+  text-transform: uppercase;
+}
+
+.tally-mark {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink-text-dim);
+  background: transparent;
+}
+
+.tally-day.done .tally-mark {
+  background: var(--ember);
+  border-color: var(--ember);
+}
+
+.tally-day.today {
+  box-shadow: inset 0 0 0 1.5px var(--ember);
+}
+
+/* ---------- Calendar page (ruled paper) ---------- */
+
+.calendar-page {
+  background: var(--paper);
+  color: var(--pencil);
+  border-radius: 10px;
+  padding: 24px 20px 20px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    var(--paper-line) 32px
+  );
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.calendar-header h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0;
+}
+
+.calendar-page .btn-ghost {
+  background: transparent;
+  border: 1px solid var(--paper-line);
+  color: var(--pencil);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.calendar-page .btn-ghost:hover { background: rgba(0,0,0,0.05); }
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 6px;
+}
+
+.calendar-weekdays span {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--pencil-dim);
+  text-transform: uppercase;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--pencil);
+  cursor: pointer;
+  border-radius: 50%;
+  position: relative;
+}
+
+.calendar-day.empty { cursor: default; }
+.calendar-day.future { color: var(--paper-line); cursor: default; }
+
+.calendar-day.logged {
+  background: var(--ember);
+  color: #1c1206;
+  font-weight: 700;
+}
+
+.calendar-day.today:not(.logged) {
+  box-shadow: inset 0 0 0 1.5px var(--rust);
+}
+
+.calendar-day:not(.empty):not(.future):hover {
+  background: rgba(0,0,0,0.08);
+}
+
+.calendar-day.logged:hover {
+  background: var(--ember-dark);
+}
+
+.calendar-hint {
+  font-size: 12px;
+  color: var(--pencil-dim);
+  margin: 14px 2px 0;
+}
+
+/* ---------- Stats footer ---------- */
+
+.stats-footer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.stat {
+  background: var(--ink-soft);
+  border-radius: var(--radius);
+  padding: 16px 8px;
+  text-align: center;
+}
+
+.stat-num {
+  display: block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--ember);
+}
+
+.stat-label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-text-dim);
+  margin-top: 6px;
+}
+
+/* ---------- Page footer ---------- */
+
+.page-footer {
+  text-align: center;
+  margin-top: 28px;
+  font-size: 12px;
+  color: var(--ink-text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--ink-text-dim);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: var(--font-body);
+  padding: 0;
+}
+
+.link-btn:hover { color: var(--ember); }
+
+/* ---------- Modal ---------- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 20, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 10;
+}
+
+.modal-overlay.hidden { display: none; }
+
+.modal {
+  background: var(--paper);
+  color: var(--pencil);
+  width: 100%;
+  max-width: 380px;
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.modal h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin: 0 0 4px;
+  font-size: 20px;
+}
+
+.modal-date {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--pencil-dim);
+  margin: 0 0 18px;
+}
+
+.field {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.field span { display: block; margin-bottom: 6px; }
+
+.field input,
+.field textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 9px 10px;
+  border: 1px solid var(--paper-line);
+  border-radius: 5px;
+  background: #fffdf8;
+  color: var(--pencil);
+  resize: vertical;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.modal .btn-ghost {
+  background: transparent;
+  border: 1px solid var(--paper-line);
+  color: var(--pencil);
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.modal .btn-ghost:hover { background: rgba(0,0,0,0.05); }
+
+#deleteEntryBtn {
+  color: var(--rust);
+  border-color: var(--rust);
+  margin-right: auto;
+}
+
+.hidden { display: none !important; }
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 480px) {
+  .stats-footer { grid-template-columns: repeat(2, 1fr); }
+  .tally-day .dow { font-size: 9px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

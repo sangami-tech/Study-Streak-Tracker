@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Study Log — Streak Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="page">
+
+  <header class="cover">
+    <p class="eyebrow">STUDY LOG</p>
+    <div class="streak-display">
+      <span id="streakNumber">0</span>
+      <span class="streak-unit" id="streakUnit">day streak</span>
+    </div>
+    <p class="tagline" id="tagline">Log today's session to start your streak.</p>
+    <button id="logTodayBtn" class="btn-primary">Log today's study</button>
+  </header>
+
+  <section class="week-ledger">
+    <h2>This week</h2>
+    <div class="tally-row" id="tallyRow"></div>
+  </section>
+
+  <section class="calendar-page">
+    <div class="calendar-header">
+      <button id="prevMonth" class="btn-ghost" aria-label="Previous month">‹</button>
+      <h2 id="monthLabel"></h2>
+      <button id="nextMonth" class="btn-ghost" aria-label="Next month">›</button>
+    </div>
+    <div class="calendar-weekdays" id="calendarWeekdays"></div>
+    <div class="calendar-grid" id="calendarGrid"></div>
+    <p class="calendar-hint">Click any past or present day to log or edit a session.</p>
+  </section>
+
+  <section class="stats-footer">
+    <div class="stat">
+      <span class="stat-num" id="currentStreak">0</span>
+      <span class="stat-label">current streak</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" id="bestStreak">0</span>
+      <span class="stat-label">best streak</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" id="totalDays">0</span>
+      <span class="stat-label">days logged</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" id="totalHours">0</span>
+      <span class="stat-label">hours studied</span>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    <p>Your data stays in this browser — nothing is sent anywhere.</p>
+    <button id="exportBtn" class="link-btn">Export backup</button>
+    <span aria-hidden="true">·</span>
+    <button id="importBtn" class="link-btn">Import backup</button>
+    <input type="file" id="importFile" accept="application/json" hidden />
+  </footer>
+
+</div>
+
+<div class="modal-overlay hidden" id="modalOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h3 id="modalTitle">Log today's study</h3>
+    <p class="modal-date" id="modalDate"></p>
+
+    <label class="field">
+      <span>Subject</span>
+      <input id="subjectInput" type="text" placeholder="e.g. Organic chemistry" maxlength="60" />
+    </label>
+
+    <label class="field">
+      <span>Minutes studied</span>
+      <input id="minutesInput" type="number" min="1" max="1440" placeholder="45" />
+    </label>
+
+    <label class="field">
+      <span>Notes</span>
+      <textarea id="notesInput" placeholder="What did you cover?" maxlength="280" rows="3"></textarea>
+    </label>
+
+    <div class="modal-actions">
+      <button id="deleteEntryBtn" class="btn-ghost hidden">Remove entry</button>
+      <button id="cancelBtn" class="btn-ghost">Cancel</button>
+      <button id="saveEntryBtn" class="btn-primary">Save</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
