@@ -31,12 +31,6 @@ python3 -m http.server 8000
 # visit http://localhost:8000
 ```
 
-## Deploying with GitHub Pages
-
-1. Push this repo to GitHub.
-2. Go to **Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to `Deploy from a branch`, branch `main`, folder `/ (root)`.
-4. Save — your tracker will be live at `https://<your-username>.github.io/<repo-name>/` within a minute or two.
 
 ## Project structure
 
@@ -54,12 +48,6 @@ study-streak-tracker/
 - The **current streak** counts consecutive logged days ending today (or yesterday, if you haven't logged today yet — so the streak doesn't reset the moment the clock strikes midnight).
 - The **best streak** is the longest run of consecutive logged days in your history.
 
-## Ideas for extending it
-
-- Add subject-level stats (time per subject).
-- Add reminders/notifications for days you haven't logged yet.
-- Sync data across devices with a small backend or a service like Firebase.
-- Add a dark/light theme toggle.
 
 ## License
 
